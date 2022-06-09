@@ -37,10 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       const SizedBox(height: 20),
                       const Text(
                         '',
-                        style: TextStyle(
-                            fontSize: 40,
-                            fontWeight: FontWeight.normal,
-                            color: Colors.black),
+                        style: TextStyle(fontSize: 40, color: Colors.black),
                       ),
                       Container(
                         alignment: Alignment.bottomCenter,
@@ -66,7 +63,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   labelText: 'Email',
                                   hintText: 'someone@example.com',
                                   labelStyle: TextStyle(
-                                    fontWeight: FontWeight.normal,
+                                    // fontWeight: FontWeight.normal,
                                     color: Colors.black,
                                   ),
                                 ),
@@ -88,7 +85,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   labelText: 'Password',
                                   hintText: 'Password',
                                   labelStyle: TextStyle(
-                                    fontWeight: FontWeight.normal,
+                                    // fontWeight: FontWeight.normal,
                                     color: Colors.black,
                                   ),
                                 ),
@@ -97,9 +94,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                 alignment: Alignment.bottomRight,
                                 child: const Text('Forgot your password?',
                                     style: TextStyle(
-                                        color: Colors.blue,
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.normal)),
+                                      color: Colors.blue,
+                                      fontSize: 15,
+                                      // fontWeight: FontWeight.normal
+                                    )),
                               ),
                               const SizedBox(height: 200),
                               ElevatedButton(
@@ -120,7 +118,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   'Login',
                                   style: TextStyle(
                                     fontSize: 20,
-                                    fontWeight: FontWeight.normal,
+                                    // fontWeight: FontWeight.normal,
                                   ),
                                 ),
                               ),
@@ -131,16 +129,18 @@ class _LoginScreenState extends State<LoginScreen> {
                                   const Text(
                                     'Don\'t have an account?',
                                     style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.normal),
+                                      color: Colors.black,
+                                      fontSize: 15,
+                                      // fontWeight: FontWeight.normal
+                                    ),
                                   ),
                                   TextButton(
                                       onPressed: () {
                                         Navigator.push(
                                             context,
                                             MaterialPageRoute(
-                                              builder: (context) => MainPort(),
+                                              builder: (context) =>
+                                                  const MainPort(),
                                             ));
                                       },
                                       child: const Text('Sign Up')),

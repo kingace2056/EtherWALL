@@ -1,6 +1,9 @@
 import 'package:etherwall/homepage.dart';
+import 'package:etherwall/screens/wallet/walletFrame.dart';
 import 'package:etherwall/screens/welcome.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,6 +19,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
+        textTheme: GoogleFonts.titilliumWebTextTheme(
+          Theme.of(context).textTheme,
+        ),
         useMaterial3: true,
         // This is the theme of your application.
         //
@@ -54,6 +60,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return WelcomeScreen();
+    // return WelcomeScreen();
+    return walletFrame();
   }
 }

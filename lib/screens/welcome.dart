@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:etherwall/constraints.dart';
 import 'package:etherwall/screens/login.dart';
+import 'package:etherwall/screens/portfolio/portmain.dart';
 import 'package:flutter/material.dart';
 
 class WelcomeScreen extends StatefulWidget {
@@ -42,7 +43,13 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.45),
               ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => MainPort(),
+                        ));
+                  },
                   child: Text(
                     'Create Account',
                     style: TextStyle(fontSize: 15),
@@ -61,7 +68,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => LoginScreen(),
+                          builder: (context) => MainPort(),
                         ));
                   },
                   child: Text(
