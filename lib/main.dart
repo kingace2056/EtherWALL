@@ -1,3 +1,4 @@
+import 'package:etherwall/api/cryptoApi.dart';
 import 'package:etherwall/homepage.dart';
 import 'package:etherwall/screens/wallet/walletFrame.dart';
 import 'package:etherwall/screens/welcome.dart';

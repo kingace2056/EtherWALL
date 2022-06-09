@@ -3,6 +3,8 @@ import 'package:etherwall/screens/portfolio/portmain.dart';
 import 'package:etherwall/widget/bottomNavBar.dart';
 import 'package:flutter/material.dart';
 
+/// i shouldnt have made this , it can be replaced by btmNavBar() widget through required page , however I've put this for future enhancements
+
 final itemIndex = 1;
 
 class walletFrame extends StatefulWidget {
@@ -15,10 +17,6 @@ class walletFrame extends StatefulWidget {
 class _walletFrameState extends State<walletFrame> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: kPrimaryColor,
-      body: MainPort(),
-      bottomNavigationBar: btmNavBar(),
-    );
+    return btmNavBar();
   }
 }
