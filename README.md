@@ -26,8 +26,8 @@ Made with Flutter 3 ❤️
 
 ## Portfolio Screen
 
-[screenshots](portfolio.png)
+![image](screenshots/portfolio.png)
 
 ## Market Screen (Working on it )
 
-[screenshots](market.png)
+![image](screenshots/market.png)
