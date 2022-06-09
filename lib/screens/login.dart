@@ -1,4 +1,5 @@
 import 'package:etherwall/screens/portfolio/portmain.dart';
+import 'package:etherwall/screens/wallet/walletFrame.dart';
 import 'package:flutter/material.dart';
 
 import '../constraints.dart';
@@ -105,7 +106,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => MainPort(),
+                                        builder: (context) => walletFrame(),
                                       ));
                                 },
                                 style: ElevatedButton.styleFrom(

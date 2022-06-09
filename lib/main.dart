@@ -62,6 +62,6 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     // return WelcomeScreen();
-    return walletFrame();
+    return WelcomeScreen();
   }
 }

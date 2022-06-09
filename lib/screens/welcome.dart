@@ -47,7 +47,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => MainPort(),
+                          builder: (context) => LoginScreen(),
                         ));
                   },
                   child: Text(
@@ -68,7 +68,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => MainPort(),
+                          builder: (context) => LoginScreen(),
                         ));
                   },
                   child: Text(
