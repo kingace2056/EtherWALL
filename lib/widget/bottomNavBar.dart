@@ -25,7 +25,7 @@ class _btmNavBarState extends State<btmNavBar> {
 
   @override
   Widget build(BuildContext context) {
-    const List<Widget> _pageList = <Widget>[
+    const List<Widget> pageList = <Widget>[
       MainPort(),
       DepositScr(),
       DepositScr(),
@@ -53,7 +53,7 @@ class _btmNavBarState extends State<btmNavBar> {
         onTap: (index) {
           setState(() {
             itemIndex = index;
-            viewWidget = _pageList[index];
+            viewWidget = pageList[index];
           });
         },
       ),

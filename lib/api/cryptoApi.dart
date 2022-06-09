@@ -69,106 +69,145 @@ class _CryptoRateState extends State<CryptoRate> {
   Widget genList() {
     return Padding(
       padding: const EdgeInsets.fromLTRB(8, 30, 8, 8),
-      child: ListView.builder(
-        scrollDirection: Axis.vertical,
-        shrinkWrap: true,
-        itemCount: cryptos.length,
-        itemBuilder: (context, int index) {
-          log(cryptos.length.toString());
-          log('message');
-          var cName = cryptos[index]['USD']['FROMSYMBOL'];
-          var cPrice = cryptos[index]['USD']['PRICE'].toString();
-          var cChange = cryptos[index]['USD']['CHANGE24HOUR'].toString();
+      child: RefreshIndicator(
+        color: kPrimaryColor,
+        onRefresh: () async {
+          await Future.delayed(Duration(seconds: 0));
+          fetchCryptos();
+        },
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  IconButton(
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.arrow_back_ios,
+                        color: Colors.white,
+                      )),
+                  Text(
+                    'Market Rate',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  IconButton(
+                      onPressed: () {},
+                      icon: Icon(
+                        CupertinoIcons.line_horizontal_3_decrease,
+                        color: Colors.white,
+                      )),
+                ],
+              ),
+              ListView.builder(
+                scrollDirection: Axis.vertical,
+                physics: NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: cryptos.length,
+                itemBuilder: (context, int index) {
+                  log(cryptos.length.toString());
+                  log('message');
+                  var cName = cryptos[index]['USD']['FROMSYMBOL'];
+                  var cPrice =
+                      cryptos[index]['USD']['PRICE'].toStringAsFixed(3);
+                  var cChange =
+                      cryptos[index]['USD']['CHANGE24HOUR'].toStringAsFixed(3);
 
-          var cGrowth = cryptos[index]['USD']['CHANGEPCTDAY'];
-          log(cGrowth.toString());
-          late bool negative = cGrowth.isNegative;
-          var cQuantity = cryptos[index]['VOLUME24HOUR'].toString();
-          if (negative) {
-            cColor = kRed;
-          } else {
-            cColor = kGreen;
-          }
+                  var cGrowth = cryptos[index]['USD']['CHANGEPCTDAY'];
+                  log(cGrowth.toString());
+                  late bool negative = cGrowth.isNegative;
+                  // var cChange =
+                  //     cryptos[index]['USD']['CHANGEDAY'].toStringAsFixed(3);
+                  if (negative) {
+                    cColor = kRed;
+                  } else {
+                    cColor = kGreen;
+                  }
 
-          return Container(
-            margin: EdgeInsets.all(8),
-            padding: EdgeInsets.all(8),
-            height: 80,
-            decoration: BoxDecoration(
-                color: kGrey,
-                borderRadius: BorderRadius.circular(80),
-                boxShadow: [
-                  BoxShadow(
-                      color: Color.fromARGB(130, 158, 158, 158),
-                      blurRadius: 5,
-                      offset: Offset(0, 3))
-                ]),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Row(
-                  children: [
-                    Container(
-                        margin: EdgeInsets.fromLTRB(8, 5, 20, 5),
-                        height: 40,
-                        width: 40,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(40),
-                            color: kPrimaryColor),
-                        child: Image.network('https://www.cryptocompare.com' +
-                            cryptos[index]['USD']['IMAGEURL'])),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                  return Container(
+                    margin: EdgeInsets.all(8),
+                    padding: EdgeInsets.all(8),
+                    height: 80,
+                    decoration: BoxDecoration(
+                        color: kGrey,
+                        borderRadius: BorderRadius.circular(80),
+                        boxShadow: [
+                          BoxShadow(
+                              color: Color.fromARGB(130, 158, 158, 158),
+                              blurRadius: 5,
+                              offset: Offset(0, 3))
+                        ]),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Text(
-                          cName,
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 20),
+                        Row(
+                          children: [
+                            Container(
+                                margin: EdgeInsets.fromLTRB(8, 5, 20, 5),
+                                height: 40,
+                                width: 40,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(40),
+                                    color: kPrimaryColor),
+                                child: Image.network(
+                                    'https://www.cryptocompare.com' +
+                                        cryptos[index]['USD']['IMAGEURL'])),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  cName,
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20),
+                                ),
+                                Text('\$$cChange',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 17,
+                                        color: Colors.black45)),
+                              ],
+                            ),
+                          ],
                         ),
-                        Text(cQuantity,
-                            style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 17,
-                                color: Colors.black45)),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Text(
+                                '\$$cPrice',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
+                                ),
+                              ),
+                              Text(
+                                '${cGrowth.toStringAsFixed(3)}%',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: cColor,
+                                    fontSize: 20),
+                              ),
+                            ],
+                          ),
+                        )
                       ],
                     ),
-                  ],
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Text(
-                        '\$$cPrice',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                        ),
-                      ),
-                      Text(
-                        '${cGrowth.toStringAsFixed(3)}%',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: cColor,
-                            fontSize: 20),
-                      ),
-                    ],
-                  ),
-                )
-              ],
-            ),
-          );
-          // ListTile(
-          //   title: Text(cryptos[index]['USD']['FROMSYMBOL']),
-          //   subtitle: Text(cryptos[index]['USD']['TOSYMBOL']),
-          //   leading: Text(cryptos[index]['USD']['PRICE'].toString())
-          //   ,
-          // );
-        },
+                  );
+                },
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
