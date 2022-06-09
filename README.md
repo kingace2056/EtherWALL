@@ -18,7 +18,7 @@ Made with Flutter 3 ❤️
 
 ## Welcome Screen
 
-[!image][screenshots](welcome.png)
+![image][screenshots](welcome.png)
 
 ## Login Screen
 
