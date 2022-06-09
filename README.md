@@ -22,7 +22,7 @@ Made with Flutter 3 ❤️
 
 ## Login Screen
 
-[screenshots](login.png)
+![image](screenshots/login.png)
 
 ## Portfolio Screen
 
