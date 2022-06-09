@@ -2,6 +2,7 @@ import 'package:etherwall/api/cryptoApi.dart';
 import 'package:etherwall/homepage.dart';
 import 'package:etherwall/screens/wallet/walletFrame.dart';
 import 'package:etherwall/screens/welcome.dart';
+import 'package:etherwall/widget/bottomNavBar.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/services.dart';
@@ -62,6 +63,6 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     // return WelcomeScreen();
-    return WelcomeScreen();
+    return btmNavBar();
   }
 }

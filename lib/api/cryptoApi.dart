@@ -1,3 +1,4 @@
+/// this is not working though , need to maintain it and make it handle the API's , probably this is the time I need to use state management
 import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
@@ -71,8 +72,10 @@ class _CryptoRateState extends State<CryptoRate> {
       padding: const EdgeInsets.fromLTRB(8, 30, 8, 8),
       child: RefreshIndicator(
         color: kPrimaryColor,
+        semanticsLabel: 'Refreshing',
         onRefresh: () async {
           await Future.delayed(Duration(seconds: 0));
+
           fetchCryptos();
         },
         child: SingleChildScrollView(

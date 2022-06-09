@@ -38,6 +38,7 @@ dependencies:
   dotted_border: ^2.0.0+2
   animated_bottom_navigation_bar: ^0.3.3
   syncfusion_flutter_charts: ^20.1.59
+  shimmer: ^2.0.0
 
 dev_dependencies:
   flutter_test:

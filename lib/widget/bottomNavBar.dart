@@ -1,4 +1,5 @@
 import 'package:etherwall/api/cryptoApi.dart';
+import 'package:etherwall/screens/market/market.dart';
 import 'package:etherwall/screens/portfolio/portmain.dart';
 import 'package:etherwall/screens/transaction/deposit.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +30,7 @@ class _btmNavBarState extends State<btmNavBar> {
       MainPort(),
       DepositScr(),
       DepositScr(),
-      CryptoRate(),
+      MarketScreen(),
     ];
     return Scaffold(
       backgroundColor: kPrimaryColor,
