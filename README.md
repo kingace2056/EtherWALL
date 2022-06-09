@@ -16,10 +16,18 @@ Made with Flutter 3 ❤️
 
 # I'll be updating this as soon as I make a new screen
 
-Welcome Screen
-<img
-src="https://i.imgur.com/5gSz4FL.png"
-raw=true
-alt=“Subject Pronouns”
-style=“margin-right: 10px;”
-/>
+## Welcome Screen
+
+[screenshots](welcome.png)
+
+## Login Screen
+
+[screenshots](login.png)
+
+## Portfolio Screen
+
+[screenshots](portfolio.png)
+
+## Market Screen (Working on it )
+
+[screenshots](market.png)
