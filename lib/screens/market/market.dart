@@ -38,9 +38,9 @@ class _MarketScreenState extends State<MarketScreen> {
   Column cBodyMethod() {
     return Column(
       children: [
-        Shimmer.fromColors(
-          baseColor: Colors.grey[100]!,
-          highlightColor: Colors.grey[300]!,
+        Shimmer(
+          loop: 10,
+          gradient: shimmerGradient,
           child: ListView.builder(
             scrollDirection: Axis.vertical,
             physics: NeverScrollableScrollPhysics(),
@@ -107,7 +107,6 @@ class _MarketScreenState extends State<MarketScreen> {
       padding: const EdgeInsets.fromLTRB(8, 30, 8, 8),
       child: RefreshIndicator(
         color: kPrimaryColor,
-        semanticsLabel: 'Refreshing',
         onRefresh: () async {
           await Future.delayed(Duration(seconds: 0));
 
