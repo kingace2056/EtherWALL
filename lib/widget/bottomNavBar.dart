@@ -35,6 +35,18 @@ class _btmNavBarState extends State<btmNavBar> {
       MarketScreen(),
     ];
     return Scaffold(
+      drawer: Drawer(
+          child: ListView(
+        padding: EdgeInsets.zero,
+        children: [
+          DrawerHeader(
+              child: Container(
+            height: 40,
+            width: 40,
+            color: Colors.pink,
+          ))
+        ],
+      )),
       backgroundColor: kPrimaryColor,
       body: viewWidget,
       bottomNavigationBar: AnimatedBottomNavigationBar(
@@ -55,16 +67,7 @@ class _btmNavBarState extends State<btmNavBar> {
         activeIndex: itemIndex,
         onTap: (index) {
           if (index == 1 || index == 2) {
-            showModalBottomSheet<dynamic>(
-                isScrollControlled: true,
-                backgroundColor: kGrey,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(40),
-                  topRight: Radius.circular(40),
-                )),
-                context: context,
-                builder: (_) => DepositScr());
+            depositModal(context);
           } else {
             setState(() {
               itemIndex = index;
@@ -74,5 +77,18 @@ class _btmNavBarState extends State<btmNavBar> {
         },
       ),
     );
+  }
+
+  Future<dynamic> depositModal(BuildContext context) {
+    return showModalBottomSheet<dynamic>(
+        isScrollControlled: true,
+        backgroundColor: kGrey,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(40),
+          topRight: Radius.circular(40),
+        )),
+        context: context,
+        builder: (_) => DepositScr());
   }
 }
