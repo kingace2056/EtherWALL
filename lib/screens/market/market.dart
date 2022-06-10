@@ -145,8 +145,6 @@ class _MarketScreenState extends State<MarketScreen> {
       shrinkWrap: true,
       itemCount: cryptoList.length,
       itemBuilder: (context, int index) {
-        log(cryptoList.length.toString());
-        log('message');
         var cName = cryptoList[index]['USD']['FROMSYMBOL'];
         var cPrice = cryptoList[index]['USD']['PRICE'].toStringAsFixed(3);
         var cChange =

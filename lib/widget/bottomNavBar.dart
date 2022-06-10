@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types, prefer_typing_uninitialized_variables
+
 import 'package:etherwall/api/cryptoApi.dart';
 import 'package:etherwall/screens/market/market.dart';
 import 'package:etherwall/screens/portfolio/portmain.dart';
@@ -19,14 +21,14 @@ class _btmNavBarState extends State<btmNavBar> {
   var viewWidget;
   @override
   void initState() {
-    viewWidget = MainPort();
+    viewWidget = const MainPort();
 
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    const List<Widget> pageList = <Widget>[
+    List pageList = [
       MainPort(),
       DepositScr(),
       DepositScr(),
@@ -52,10 +54,23 @@ class _btmNavBarState extends State<btmNavBar> {
         ],
         activeIndex: itemIndex,
         onTap: (index) {
-          setState(() {
-            itemIndex = index;
-            viewWidget = pageList[index];
-          });
+          if (index == 1 || index == 2) {
+            showModalBottomSheet<dynamic>(
+                isScrollControlled: true,
+                backgroundColor: kGrey,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(40),
+                  topRight: Radius.circular(40),
+                )),
+                context: context,
+                builder: (_) => DepositScr());
+          } else {
+            setState(() {
+              itemIndex = index;
+              viewWidget = pageList[index];
+            });
+          }
         },
       ),
     );

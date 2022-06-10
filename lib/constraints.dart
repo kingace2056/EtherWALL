@@ -9,6 +9,7 @@ Color kYellow = const Color(0xFFfdb32a);
 Color kMidNightBlue = const Color(0xFF0d1f3c);
 Color kDarkGrey = const Color(0xFF3A3A3A);
 Color kGrey = const Color(0xFFEDF1F9);
+Color kBgGrey = const Color(0xFF979797);
 
 Gradient shimmerGradient = LinearGradient(
   colors: [
