@@ -10,6 +10,11 @@ UI inspired from https://whollet.io/
 
 Made with Flutter 3 ❤️
 
+## Watch Live on https://etherwall.netlify.app/
+
+Although it is not built for web , still you can have a look how the app looks like without running on your device .
+I'd prefer to use it on chrome with Any mobile device selected on devtools.
+
 # Screens
 
 # I'm using this portion of readme as checkpoint

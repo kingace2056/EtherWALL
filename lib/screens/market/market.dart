@@ -7,11 +7,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shimmer/shimmer.dart';
+import 'package:etherwall/api/cryptoApi.dart';
 
 late var cColor;
-
-var api =
-    'https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH,ADA,SOL,USDT,XRP,DOGE,LINK,THETA,BLZ,WAVES,MATIC,LUNA2,SHIB,LTC&tsyms=USD&apikey=6a8e01c56d91a9f7e8d5fd68cdd465d0bfdcc4be73d0b29ec68f8179059edd37';
 
 class MarketScreen extends StatefulWidget {
   const MarketScreen({Key? key}) : super(key: key);
@@ -21,7 +19,7 @@ class MarketScreen extends StatefulWidget {
 }
 
 class _MarketScreenState extends State<MarketScreen> {
-  static List cryptos = [];
+  late List cryptoList = [];
   bool isloading = false;
 
   late Widget cBody;
@@ -32,14 +30,14 @@ class _MarketScreenState extends State<MarketScreen> {
     isloading = true;
     cBody = cBodyMethod();
     super.initState();
-    fetchCryptos();
+    cryptoFetch();
   }
 
   Column cBodyMethod() {
     return Column(
       children: [
         Shimmer(
-          loop: 10,
+          loop: 1000,
           gradient: shimmerGradient,
           child: ListView.builder(
             scrollDirection: Axis.vertical,
@@ -67,31 +65,20 @@ class _MarketScreenState extends State<MarketScreen> {
     );
   }
 
-  Future<void> fetchCryptos() async {
+  Future cryptoFetch() async {
     setState(() {
-      isloading = true;
       cBody = cBodyMethod();
+      isloading = true;
     });
 
-    final response = await http.get(Uri.parse(api));
-    if (response.statusCode == 200) {
-      var items = json.decode(response.body)['RAW'];
-      Map<String, dynamic> map = items;
-      log(map.toString());
-      log('it work');
+    if ((cryptoList = await ApiService().fetchCryptos()) != null) {
       setState(() {
-        cryptos = map.values.toList();
-        log('test test');
-        log(cryptos.toString());
-        log('test test end');
-
+        cBody = cBodyMethod();
         isloading = false;
       });
     } else {
-      log('Not working');
       setState(() {
-        cryptos = [];
-
+        cBody = cBodyMethod();
         isloading = false;
       });
     }
@@ -108,9 +95,11 @@ class _MarketScreenState extends State<MarketScreen> {
       child: RefreshIndicator(
         color: kPrimaryColor,
         onRefresh: () async {
+          // log('Fetchings');
           await Future.delayed(Duration(seconds: 0));
-
-          fetchCryptos();
+          // log('efhkwrjeghr');
+          // log(cryptoList.toString() + ' hello world ');
+          cryptoFetch();
         },
         child: SingleChildScrollView(
           child: Column(
@@ -154,15 +143,16 @@ class _MarketScreenState extends State<MarketScreen> {
       scrollDirection: Axis.vertical,
       physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
-      itemCount: cryptos.length,
+      itemCount: cryptoList.length,
       itemBuilder: (context, int index) {
-        log(cryptos.length.toString());
+        log(cryptoList.length.toString());
         log('message');
-        var cName = cryptos[index]['USD']['FROMSYMBOL'];
-        var cPrice = cryptos[index]['USD']['PRICE'].toStringAsFixed(3);
-        var cChange = cryptos[index]['USD']['CHANGE24HOUR'].toStringAsFixed(3);
+        var cName = cryptoList[index]['USD']['FROMSYMBOL'];
+        var cPrice = cryptoList[index]['USD']['PRICE'].toStringAsFixed(3);
+        var cChange =
+            cryptoList[index]['USD']['CHANGE24HOUR'].toStringAsFixed(3);
 
-        var cGrowth = cryptos[index]['USD']['CHANGEPCTDAY'];
+        var cGrowth = cryptoList[index]['USD']['CHANGEPCTDAY'];
         log(cGrowth.toString());
         late bool negative = cGrowth.isNegative;
         // var cChange =
