@@ -43,6 +43,7 @@ class DepositScrState extends State<DepositScr> {
                     )),
               ],
             ),
+            SizedBox(height: 20),
           ]),
     );
   }

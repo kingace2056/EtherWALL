@@ -6,6 +6,8 @@ import 'package:etherwall/widget/bottomNavBar.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_web_frame/flutter_web_frame.dart';
+import 'package:flutter/foundation.dart';
 
 void main() {
   runApp(const MyApp());
@@ -63,6 +65,12 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     // return WelcomeScreen();
-    return btmNavBar();
+    return FlutterWebFrame(
+        enabled: kIsWeb,
+        maximumSize: Size(400.0, 812.0),
+        backgroundColor: Colors.grey,
+        builder: (context) {
+          return btmNavBar();
+        });
   }
 }

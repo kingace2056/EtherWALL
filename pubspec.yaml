@@ -39,6 +39,7 @@ dependencies:
   animated_bottom_navigation_bar: ^0.3.3
   syncfusion_flutter_charts: ^20.1.59
   shimmer: ^2.0.0
+  flutter_web_frame: ^0.0.3
 
 dev_dependencies:
   flutter_test:
