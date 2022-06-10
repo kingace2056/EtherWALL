@@ -3,6 +3,7 @@
 
 import 'package:etherwall/constraints.dart';
 import 'package:etherwall/main.dart';
+import 'package:etherwall/screens/transaction/deposit.dart';
 import 'package:etherwall/widget/bottomNavBar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -187,23 +188,28 @@ class MainPortState extends State<MainPort> {
                                 '300', '\$ 3,000,000', '-3.5 %', kRed),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: DottedBorder(
-                                borderType: BorderType.RRect,
-                                color: Colors.grey,
-                                radius: Radius.circular(80),
-                                child: Container(
-                                  padding: EdgeInsets.all(8),
-                                  height: 80,
-                                  decoration: BoxDecoration(
-                                    color: Colors.transparent,
-                                    // borderRadius: BorderRadius.circular(80),
+                              child: InkWell(
+                                onTap: () {
+                                  depositModal(context);
+                                },
+                                child: DottedBorder(
+                                  borderType: BorderType.RRect,
+                                  color: Colors.grey,
+                                  radius: Radius.circular(80),
+                                  child: Container(
+                                    padding: EdgeInsets.all(8),
+                                    height: 80,
+                                    decoration: BoxDecoration(
+                                      color: Colors.transparent,
+                                      // borderRadius: BorderRadius.circular(80),
+                                    ),
+                                    child: Center(
+                                        child: Text('+ Deposit more coins ',
+                                            style: TextStyle(
+                                                fontSize: 28,
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.grey))),
                                   ),
-                                  child: Center(
-                                      child: Text('+ Deposit more coins ',
-                                          style: TextStyle(
-                                              fontSize: 28,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.grey))),
                                 ),
                               ),
                             ),
@@ -468,6 +474,19 @@ class MainPortState extends State<MainPort> {
         ],
       ),
     );
+  }
+
+  Future<dynamic> depositModal(BuildContext context) {
+    return showModalBottomSheet<dynamic>(
+        isScrollControlled: true,
+        backgroundColor: kGrey,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(40),
+          topRight: Radius.circular(40),
+        )),
+        context: context,
+        builder: (_) => DepositScr());
   }
 }
 
