@@ -2,6 +2,7 @@
 // ignore: prefer_const_literals_to_create_immutables
 
 import 'package:etherwall/constraints.dart';
+import 'package:etherwall/main.dart';
 import 'package:etherwall/widget/bottomNavBar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -91,7 +92,11 @@ class MainPortState extends State<MainPort> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => MyApp()),
+                      );
+                    },
                     icon: Icon(
                       Icons.arrow_back_ios,
                       color: Colors.white,

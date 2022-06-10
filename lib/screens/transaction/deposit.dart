@@ -2,7 +2,8 @@ import 'package:etherwall/constraints.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
+// import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:flutter/services.dart';
 
 final cryptoList = {
   'BTC': '/media/37746251/btc.png',
@@ -29,7 +30,7 @@ class DepositScrState extends State<DepositScr> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.fromLTRB(8, 20, 8, 8),
+      padding: const EdgeInsets.fromLTRB(8, 20, 8, 8),
       height: MediaQuery.of(context).size.height * 0.7,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -38,8 +39,9 @@ class DepositScrState extends State<DepositScr> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
+            // ignore: prefer_const_literals_to_create_immutables
             children: [
-              Text(
+              const Text(
                 'Deposit Coins',
                 style: TextStyle(
                     fontSize: 30,
@@ -88,7 +90,7 @@ class DepositScrState extends State<DepositScr> {
                               padding: const EdgeInsets.only(left: 15.0),
                               child: Text(
                                 crypName[index],
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontSize: 20,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.black),
@@ -102,7 +104,7 @@ class DepositScrState extends State<DepositScr> {
             ),
           ),
           Container(
-            margin: EdgeInsets.only(top: 30, bottom: 20),
+            margin: const EdgeInsets.only(top: 30, bottom: 20),
             height: 200,
             width: 200,
             decoration: BoxDecoration(
@@ -111,57 +113,66 @@ class DepositScrState extends State<DepositScr> {
                   BoxShadow(
                       color: kBgGrey.withOpacity(0.3),
                       blurRadius: 10,
-                      offset: Offset(0, 0))
+                      offset: const Offset(0, 0))
                 ],
                 borderRadius: BorderRadius.circular(20)),
             child: Image.network('https://i.imgur.com/77ZtWkm.png'),
           ),
-          Text(
+          const Text(
             '0xFD85D716B76A81959609D \n 1dce9DF0215D0E1C33b',
             style: TextStyle(color: Colors.black, fontSize: 15),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Row(
-                children: [
-                  Icon(
-                    FontAwesomeIcons.copy,
-                    size: 25,
-                    color: kPrimaryColor,
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Text(
-                    'Copy',
-                    style: TextStyle(color: kPrimaryColor, fontSize: 20),
-                  )
-                ],
+              InkWell(
+                onTap: () {
+                  Clipboard.setData(const ClipboardData(
+                      text: '0xFD85D716B76A81959609D1dce9DF0215D0E1C33b'));
+                },
+                child: Row(
+                  children: [
+                    Icon(
+                      FontAwesomeIcons.copy,
+                      size: 25,
+                      color: kPrimaryColor,
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      'Copy',
+                      style: TextStyle(color: kPrimaryColor, fontSize: 20),
+                    )
+                  ],
+                ),
               ),
-              Padding(
+              const Padding(
                 padding: EdgeInsets.only(left: 20, right: 20),
                 // child: Icon(Icons.line_axis),
               ),
-              Row(
-                children: [
-                  Icon(
-                    FontAwesomeIcons.copy,
-                    size: 25,
-                    color: kPrimaryColor,
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Text(
-                    'Copy',
-                    style: TextStyle(color: kPrimaryColor, fontSize: 20),
-                  )
-                ],
+              InkWell(
+                onTap: () {},
+                child: Row(
+                  children: [
+                    Icon(
+                      CupertinoIcons.share,
+                      size: 25,
+                      color: kPrimaryColor,
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      'Share',
+                      style: TextStyle(color: kPrimaryColor, fontSize: 20),
+                    )
+                  ],
+                ),
               )
             ],
           )

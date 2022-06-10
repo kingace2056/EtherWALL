@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:etherwall/constraints.dart';
+import 'package:etherwall/main.dart';
+import 'package:etherwall/widget/bottomNavBar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -109,7 +111,11 @@ class _MarketScreenState extends State<MarketScreen> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => btmNavBar()),
+                        );
+                      },
                       icon: Icon(
                         Icons.arrow_back_ios,
                         color: Colors.white,
