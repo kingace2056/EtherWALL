@@ -70,7 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
         maximumSize: Size(400.0, 812.0),
         backgroundColor: Colors.grey,
         builder: (context) {
-          return btmNavBar();
+          return WelcomeScreen();
         });
   }
 }

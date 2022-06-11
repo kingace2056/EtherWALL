@@ -44,7 +44,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               SizedBox(height: MediaQuery.of(context).size.height * 0.45),
               ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
+                    Navigator.popUntil(context, (route) => route.isFirst);
+                    Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
                           builder: (context) => LoginScreen(),
@@ -65,7 +66,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 InkWell(
                   onTap: () {
                     log('This is message');
-                    Navigator.push(
+                    Navigator.popUntil(context, (route) => route.isFirst);
+                    Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
                           builder: (context) => LoginScreen(),
